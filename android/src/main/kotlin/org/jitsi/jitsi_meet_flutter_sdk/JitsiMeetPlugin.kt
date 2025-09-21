@@ -135,6 +135,11 @@ class JitsiMeetPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
           else -> setConfigOverride(key, value.toString())
         }
       }
+
+            // 0 = FIT (letter-box) , 1 = FILL (crop, default)
+      val videoScaling = (call.argument<Int>("videoRenderingMode") ?: 1)
+      setFeatureFlag("video-rendering-mode", videoScaling)   // or use setConfigOverride
+
       featureFlags?.forEach { (key, value) ->
         when (value) {
           is Boolean -> setFeatureFlag(key, value)
