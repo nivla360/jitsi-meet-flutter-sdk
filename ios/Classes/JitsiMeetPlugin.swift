@@ -75,8 +75,8 @@ public class JitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
         let displayName = rawUserInfo["displayName"] as? String
         let email = rawUserInfo["email"] as? String
         var avatar: URL? = nil
-        let scaling = (arguments["videoRenderingMode"] as? Int) ?? 1
-
+        let scaling = (configOverrides?["videoRenderingMode"] as? Int) ?? 1
+        
         if rawUserInfo["avatar"] as? String != nil {
             avatar = URL(string: rawUserInfo["avatar"] as! String)
         }
